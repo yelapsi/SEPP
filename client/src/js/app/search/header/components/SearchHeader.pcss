@@ -1,0 +1,162 @@
+@import '../../../Variables.pcss';
+
+.SearchHeader {
+    display: flex;
+    flex-direction: row;
+    padding: 15px 15px 0 15px;
+    margin: 0;
+    width: 100%;
+
+    background-color: $header-grey;
+    box-shadow: 0 0 15px 0 rgba(50, 50, 50, 0.05);
+    border-bottom: 1px solid $border-color;
+
+    .logo {
+        margin-top: -13px;
+        margin-right: 15px;
+        padding: 0;
+        width: 160px;
+        flex-shrink: 0;
+        align-self: flex-start;
+        .image {
+            height: 80px;
+            background: url('/img/searchx_logo.png') no-repeat center center;
+            background-size: contain;
+        }
+    }
+
+    .form {
+        max-width: 650px;
+        margin-right: 20px;
+        flex: 1;
+        position: relative;
+
+        .box {
+            width: 100%;
+            height: 50px;
+            width: 500px;
+            margin-top: 5px;
+            padding-top: 0;
+            padding-bottom: 0;
+
+            input {
+                color: #000;
+                height: 44px;
+                z-index: 4;
+
+                border-bottom: 1px solid #BDC3C7;
+                border-top: 1px solid #BDC3C7;
+                border-left: 1px solid #BDC3C7;
+                border-right: 0px solid #BDC3C7;
+            }
+
+            input, textarea {
+                outline: none;
+                border-radius: 0px;
+                box-shadow:none !important;
+                border-bottom: 1px solid #BDC3C7;
+                border-top: 1px solid #BDC3C7;
+                border-left: 1px solid #BDC3C7;
+                border-right: 0px solid #BDC3C7;
+            }
+
+            button {
+                color: #dimgray;
+                background-color: #fff;
+
+                width: 47px;
+                height: 44px;
+                z-index: 3;
+                border-radius: 0px;
+                border-bottom: 1px solid #BDC3C7;
+                border-top: 1px solid #BDC3C7;
+                border-left: 0px solid #BDC3C7;
+                border-right: 1px solid #BDC3C7;
+
+
+                &:hover, &:focus {
+
+                    text-decoration: none;
+                }
+
+
+            }
+        }
+
+        .verticals {
+            padding-top: 15px;
+
+            ul {
+                float:left;
+                list-style: none;
+                width:100%;
+                padding-left:0;
+                margin-bottom: 0;
+            }
+
+            .item {
+                float:left;
+                padding-left: 15px;
+                padding-right: 15px;
+                padding-bottom: 10px;
+                cursor: pointer;
+                color: dimgray;
+
+                &:hover {
+                    color: $primary-color;
+                }
+            }
+
+            .active {
+                font-weight: 600;
+                color: $primary-color;
+                border-bottom: 4px solid $primary-color;
+            }
+        }
+    }
+
+    .TimerDiv {
+        padding-left: 15px;
+        padding-right: 15px;
+        margin-left: auto;
+        margin-top: -2px;
+    }
+
+    .StatusDiv {
+        padding-left: 15px;
+        padding-right: 15px;
+        margin-left: auto;
+        margin-top: -2px;
+    }
+}
+
+.AccountInfo {
+    float: right;
+    flex-shrink: 0;
+    margin-left: auto;
+    margin-top: 8px;
+    font-size: 14px;
+    .userId {
+        margin: 0;
+    }
+
+    .groupId {
+        margin: 0;
+        a {
+        color: $primary-color;
+    }
+    }
+}
+
+.resetGroupButton {
+    margin-left:5px;
+    box-shadow: 0.5px 0.5px 0.5px 0.5px #BFBFBF;
+    background-color: white;
+    color: $description-grey;
+    border: 1px solid #BDC3C7;
+    font-size: 13px;
+    height: 30px;
+    .hover {
+        background-color: $description-grey;
+    }
+}

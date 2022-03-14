@@ -1,0 +1,259 @@
+@import '../../../Variables.pcss';
+
+.SearchResults {
+    padding: 15px 15px 0;
+
+    .time {
+        color: $description-grey;
+        font-size: 13px;
+        font-weight: normal;
+
+        margin-left: 15px;
+        margin-bottom: 15px;
+    }
+
+    .collapsedText {
+        color: $description-grey;
+        font-size: 13px;
+        font-weight: normal;
+
+        margin-left: 15px;
+        margin-bottom: 15px;
+    }
+
+    .list {
+        padding-left: 15px;
+    }
+
+    .SearchResult {
+
+
+        .lineContainer {
+            display: flex;
+            align-items: stretch;
+        }
+        .clickArea {
+            width: 100%;
+        }
+
+                  .visited {
+                    color: $visited-blue;
+                }
+
+        h2 {
+            flex: 1 0 auto;
+            font-size: 18px;
+            line-height: 21px;
+
+            margin-bottom: 1px;
+            margin-top: 0;
+            max-width: 500px;
+            display: block;
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+            white-space: nowrap;
+
+            a, a:hover, a:focus {
+                color: $link-blue;
+                text-decoration: none;
+            }
+
+
+        }
+
+        p {
+            color: $description-grey;
+
+            font-size: 13px;
+            font-weight: normal;
+            line-height: 17px;
+            height: auto;
+
+            display: block;
+            word-wrap: break-word;
+            margin-top: 0;
+            margin-bottom: 3px;
+        }
+
+        .source {
+            color: $link-green;
+
+            line-height: 16px;
+            font-size: 14px;
+            max-width: 500px;
+
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+
+            margin-top: 3px;
+            margin-bottom: 3px;
+        }
+
+        .rating {
+            float : left;
+            margin-right: 5px;
+            height: 5px;
+            .fa-bookmark {
+                font-size: 18px;
+                color: #ffd700;
+            }
+
+            .fa-bookmark-o {
+                font-size: 18px;
+                color: #cccccc;
+            }
+
+            .fa-ban {
+                font-size: 18px;
+                color: #cccccc;
+            }
+
+            .red {
+                color: #ff0000;
+            }
+        }
+
+        .metadata {
+            font-size: 0.95em;
+            color: dimgray;
+
+            span {
+                margin-right: 10px;
+            }
+        }
+
+        /* TYPES */
+
+        .result-web {
+            margin-bottom: 15px;
+            margin-left: 0;
+            display: inline-block;
+
+            p {
+                max-width: 500px;
+            }
+        }
+
+        .result-news {
+            margin-bottom: 15px;
+            margin-left: 0;
+            display: inline-block;
+
+            .image {
+                img {
+                    float: left;
+                    height: 100px;
+                    width: 100px;
+                    margin-right: 10px;
+                    margin-bottom: 15px;
+                }
+            }
+
+            .info {
+                p {
+                    max-width: 700px;
+                }
+            }
+        }
+
+        .result-image {
+            float: left;
+            margin-bottom: 20px;
+            margin-right: 15px;
+
+            .rating {
+                background-color: white;
+                padding: 4px 5px 1px;
+            }
+
+            .image {
+                height: 150px;
+                width: 275px;
+                background-position: center;
+                background-size: cover;
+
+                margin-bottom: 5px;
+                display: block;
+            }
+        }
+
+        .result-video {
+            float: left;
+            margin-bottom: 20px;
+            margin-right: 15px;
+
+            width: 275px;
+            height: 230px;
+
+            h6 {
+                margin-top: 3px;
+                margin-bottom: 3px;
+            }
+
+            .player {
+                margin-bottom: 10px;
+                background-color: black;
+            }
+        }
+
+        .result-text {
+            margin-bottom: 15px;
+            margin-left: 0;
+
+            p {
+                max-width: 700px;
+            }
+
+            h2 {
+                max-width: 700px;
+            }
+
+        }
+    }
+
+    .collapsedResultsButton {
+        width: 100%;
+        box-shadow: 0.5px 0.5px 0.5px 0.5px #BFBFBF;
+    background-color: white;
+        color: $description-grey;
+        border: 1px solid #BDC3C7;
+    }
+
+    .allCollapsedResultsButton {
+        margin-right: 15px;
+        box-shadow: 0.5px 0.5px 0.5px 0.5px #BFBFBF;
+        background-color: white;
+        color: $description-grey;
+        border: 1px solid #BDC3C7;
+    }
+
+    .result-collapsed {
+        margin-bottom: 15px;
+        margin-left: 0;
+        max-width: 700px;
+
+        .resultIcon {
+            margin-right: 5px;
+            color: #cccccc;
+        }
+    }
+}
+
+
+
+.text-center {
+    margin-left: 30px;
+    color: $primary-color;
+}
+.page-item.active .page-link {
+    background-color: $primary-color;
+    border: 1px solid $primary-color;
+}
+
+.page-item .page-link {
+    color: $primary-color;
+
+}

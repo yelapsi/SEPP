@@ -1,0 +1,41 @@
+@import url('../../../Variables.pcss');
+
+.Session {
+    display: flex;
+    height: 100vh;
+
+    .Medium {
+        width: 100%;
+    }
+
+    .Task {
+        width: 20%;
+        background-color: #EEEEEE;
+        padding: 10px;
+
+        @media (min-width: 992px) {
+            height: 100%;
+            position: fixed;
+            right:0;
+        }
+
+        .body {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+
+            .box {
+                padding: 20px;
+
+                background-color: #ffffff;
+                border: 1px solid lightgrey;
+                border-radius: 4px;
+            }
+        }
+    }
+
+    .Wait {
+        width: 80%;
+    }
+}
+

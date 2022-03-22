@@ -24,7 +24,7 @@ class TextSearchResult extends Component{
                         <div class="inner01">{this.state.name}</div>
                         <div class="inner02">{this.state.source}</div>
                         <div class="inner03">{this.state.text}</div>
-                        <button class='b01' onClick={()=>{
+                        <button class='b01 btnMe' onClick={()=>{
                             // console.log("0");
                             if(this.state.source===""){
                                 // console.log("1");

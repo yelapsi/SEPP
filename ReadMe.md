@@ -73,37 +73,7 @@ These instructions are for Ubuntu Linux. The steps can be adapted for all major 
     // Check if API is running (curl or through browser)
     curl http://localhost:4443
     ```
-
-## Search Providers
-You can install the supported search providers as follows. See the [configuration section](#configuration) for how to configure which search provider is used by default.
-
-### Elasticsearch
-Execute the [Elasticsearch installation instructions](https://www.elastic.co/guide/en/elasticsearch/reference/6.2/deb.html).
-
-### Indri
-1. Execute the [node-indri installation instructions](https://github.com/felipemoraes/node-indri#setup).
-2. Copy the built node-indri module from `build/Release/node-indri` inside your node-indri folder to `lib/node-indri` inside your searchx-backend folder (you need to create the lib and node-indri folders first).
-
-### Bing
-SearchX requires a [Bing API key](https://azure.microsoft.com/en-us/services/cognitive-services/bing-web-search-api/) to use the Bing web search provider.
-
-Once you have a Bing API key, you can paste it into your `.env` file under the key `BING_ACCESS_KEY`. Be careful not to check the key into version control, since this may lead to abuse if the key leaks.
-
-# API Specification 
-```
-// Search
-[address]/v1/search/[vertical]/?query=[query]&page=[pageNumber]&provider=[provider]
-- address: address set in the configuration file (testUrl:PORT)
-- vertical: search vertical to use, as specified by search provider, eg. (web, images, videos, news) for bing
-- userId: the identifier for the user that is issuing this API call
-- sessionId: the identifier for the session that the this API call belongs to
-- query: query string
-- page: page number
-- providerName [optional]: the search provider to use (elasticsearch, indri, bing), defaults to DEFAULT_SEARCH_PROVIDER if unset
-- relevanceFeedback [optional, false by default]: whether to use relevance feedback (false, individual, shared)
-- distributionOfLabour [optional, false by default]: whether to use distribution of labour (false, unbookmarkedSoft, unbookmarkedOnly)
-```
-
+    
 #SEPP Client
 - Make sure the SEPP server is up and running.
 

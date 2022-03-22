@@ -103,24 +103,33 @@ class LoginForm extends React.Component {
         }else{
             if(LoginStore.isManager){
                 return (
-                    <div>
-                        <h3>Your UserID: {AccountStore.getUserId()}</h3>
+                    <div className='loginForm'>
+                        <div class='loginTitle'>Your UserID: {AccountStore.getUserId()}</div>
+                        <br/>
+                        <br/>
                         <Link to="/search2/" style={{color:'black'}}>
-                            <button type="button">Go to Search</button>
+                            <button type="button" className='btnMe'>Go to Search</button>
                         </Link>
                         <br/>
+                        <br/>
                         <Link to="/loguiData/" style={{color:'black'}}>
-                            <button type="button">Go to LogUI</button>
+                            <button type="button" className='btnMe'>Go to LogUI</button>
                         </Link>
+                        <br/>
+                        <br/>
                     </div>
                 );
             } else {
                 return (
-                    <div>
-                        <h3>Your UserID: {AccountStore.getUserId()}</h3>
+                    <div className='loginForm'>
+                        <div class='loginTitle'>Your UserID: {AccountStore.getUserId()}</div>
+                        <br/>
+                        <br/>
                         <Link to="/search2/" style={{color:'black'}}>
-                            <button type="button">Go to Search</button>
+                            <button type="button" className='btnMe'>Go to Search</button>
                         </Link>
+                        <br/>
+                        <br/>
                     </div>
                 );
             }

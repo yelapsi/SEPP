@@ -166,8 +166,12 @@ body, html, #root, .app, .container {
   box-sizing: border-box;
   width: 100%;
   max-width: 400px;
-  padding-left: 20px;
-  padding-right: 20px;
+  border-radius: 5px;
+  background: #00a6d6;
+  padding: 10px;
+  position: absolute;
+  top: 30%;
+  left: 40%;
 }
 
 .inputField {
@@ -201,4 +205,10 @@ body, html, #root, .app, .container {
   border-radius: 4px;
   background: #fff;
   cursor: pointer;
+}
+
+.loginTitle {
+  color: #ffffff;
+  font-size: 30px;
+  text-align: center;
 }

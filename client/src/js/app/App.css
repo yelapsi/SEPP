@@ -190,10 +190,10 @@ body, html, #root, .app, .container {
   padding-top: 16px;
 }
 
-.btn {
+.btnMe {
   width: 100%;
   min-width: 280px;
-  color: #565656;
+  color: #1189de;
   padding: 12px;
   font-size: 14px;
   font-weight: bold;

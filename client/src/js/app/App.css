@@ -165,13 +165,13 @@ body, html, #root, .app, .container {
 .loginForm {
   box-sizing: border-box;
   width: 100%;
-  max-width: 400px;
+  max-width: 600px;
   border-radius: 5px;
   background: #00a6d6;
   padding: 10px;
   position: absolute;
   top: 30%;
-  left: 40%;
+  left: 34%;
 }
 
 .inputField {

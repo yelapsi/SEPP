@@ -80,11 +80,13 @@ export default class LoguiData extends React.Component{
           <div class="content">
             <h1>LogUI data view</h1>
             <Posts posts={this.state.currentPosts} loading={this.state.loading} config={this.state.config}/>
+            <br/>
             <Pagination 
               postsPerPage={this.state.postsPerPage} 
               totalPosts={this.state.totalNumber}
               paginate={this.state.paginate}
               currentPage={this.state.currentPage}/>
+            <br/>
 
             <p>Results per page:</p>
             <select name="resultsPerPage" id="resultsPerPage" onChange={this.pageNumber.bind(this)} value={this.state.postsPerPage}>

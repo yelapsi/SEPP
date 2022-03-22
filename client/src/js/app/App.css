@@ -212,3 +212,39 @@ body, html, #root, .app, .container {
   font-size: 30px;
   text-align: center;
 }
+
+.logui_tr{
+  height: 60px;
+  background: #36304a;
+}
+
+.logui_th{
+  font-family: OpenSans-Regular;
+  font-size: 18px;
+  color: #fff;
+  line-height: 1.2;
+  font-weight: unset;
+}
+
+.logui_td{
+  font-family: OpenSans-Regular;
+  font-size: 18px;
+  color: rgb(29, 29, 29);
+  line-height: 1.2;
+  font-weight: unset;
+  padding-right: 40px;
+}
+
+.logui_td_id{
+  width: 200px;
+  padding-right: 40px;
+}
+
+.logui_td_sp{
+  font-family: OpenSans-Regular;
+  font-size: 15px;
+  color: rgb(29, 29, 29);
+  line-height: 1.2;
+  font-weight: unset;
+  padding-right: 40px;
+}

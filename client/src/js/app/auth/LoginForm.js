@@ -79,7 +79,7 @@ class LoginForm extends React.Component {
         if(!UserStore.isLoggedIn){
             return (
                 <div className='loginForm'>
-                    Login
+                    <div class='loginTitle'>SEPP Login</div>
                     <InputField
                         type='text'
                         placeholder='Username'

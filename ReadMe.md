@@ -74,7 +74,7 @@ These instructions are for Ubuntu Linux. The steps can be adapted for all major 
     curl http://localhost:4443
     ```
     
-#SEPP Client
+# SEPP Client
 - Make sure the SEPP server is up and running.
 
 - Set up the server and install dependencies:

@@ -1,126 +1,152 @@
-import React from 'react'
-import {Route, Router} from 'react-router-dom'
-import MobileDetect from 'mobile-detect';
-import Bowser from "bowser"
-import history from './History';
+import React from 'react';
+import InputField from './InputField';
+import SubmitButton from './SubmitButtion';
+import UserStore from '../../stores/UserStore';
+import AccountStore from "../../stores/AccountStore";
+import LoginStore from "../../stores/LoginStore";
+import { Link } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 
-import About from './pages/About';
-import Search from './search/Search';
-import Search2 from './search/Search2';
-import Login from './auth/Login';
-import LoguiData from './components/LoguiData';
-
-import SimpleRegister from './tasks/example-simple/Register';
-import SimpleSubmit from './tasks/example-simple/Submit';
-import SimpleSession from './tasks/example-simple/Session';
-import SyncRegister from './tasks/example-group-sync/Register';
-import Disqualified from './tasks/example-group-sync/Disqualified';
-import SyncPreTest from './tasks/example-group-sync/PreTest';
-import SyncIntermediateTests from './tasks/example-group-sync/IntermediateTests';
-import SyncPostTest from './tasks/example-group-sync/PostTest';
-import SyncSession from './tasks/example-group-sync/Session';
-import AsyncRegister from './tasks/example-group-async/Register';
-import AsyncFeedback from './tasks/example-group-async/Feedback';
-import AsyncSession from './tasks/example-group-async/Session';
-import PilotRegister from './tasks/algorithmic-mediation-pilot/Register';
-import PilotWait from './tasks/algorithmic-mediation-pilot/Wait';
-import PilotSession1 from './tasks/algorithmic-mediation-pilot/Session1';
-import PilotDescription1 from './tasks/algorithmic-mediation-pilot/TaskDescription1';
-import PilotSession2 from './tasks/algorithmic-mediation-pilot/Session2';
-import PilotDescription2 from './tasks/algorithmic-mediation-pilot/TaskDescription2';
-import PilotSession3 from './tasks/algorithmic-mediation-pilot/Session3';
-import PilotDescription3 from './tasks/algorithmic-mediation-pilot/TaskDescription3';
-import PilotPostTest from './tasks/algorithmic-mediation-pilot/PostTest';
-
-
-import RoleBasedRegister from './tasks/role-based/Register';
-import RoleBasedReRegister from './tasks/role-based/ReRegister';
-import RoleBasedWait from './tasks/role-based/Wait';
-import RoleBasedSession from './tasks/role-based/Session';
-import RoleBasedDescription from './tasks/role-based/TaskDescription';
-import RoleBasedDescriptionShort from './tasks/role-based/TaskDescriptionShort';
-import RoleBasedPostTest from './tasks/role-based/PostTest';
-import Chat from './search/features/chat/Chat';
-import { Provider } from 'react-redux';
-// import { store } from './store/reduxStore';
-import UserStore from '../stores/UserStore';
-import { observer } from 'mobx-react';
-
-
-import './App.css';
-import LoginForm from './auth/LoginForm';
-import InputField from './auth/InputField';
-import SubmitButton from './auth/SubmitButtion';
-
-export class App extends React.Component {
-    async componentDidMount() {
-        try {
-            let res = await fetch('/isLoggedIn', {
-                method: 'post',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-type': 'application/json'
-                }
-            });
-
-            let result  = await res.json();
-            if(result && result.success){
-                UserStore.loading = false;
-                UserStore.isLoggedIn = true;
-                UserStore.username = result.username;
-            } else {
-                UserStore.loading = false;
-                UserStore.isLoggedIn = false;
-            }
-        }
-        catch(e) {
-            UserStore.loading = false;
-            UserStore.isLoggedIn = false;
+class LoginForm extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            username: '',
+            password: '',
+            isManager: LoginStore.getAuth(),
+            buttonDisabled: false,
         }
     }
 
-    async doLogout() {
+    setInputValue(property, val){
+        val = val.trim();
+        if(val.length > 12){
+            return;
+        }
+        this.setState({
+            [property]: val
+        })
+    }
+    
+    resetForm(){
+        this.setState({
+            username: '',
+            password: '',
+            buttonDisabled: false
+        })
+    }
+
+    async doLogin(){
+        if(!this.state.username){
+            return;
+        }
+        if(!this.state.password){
+            return;
+        }
+
+        this.setState({
+            buttonDisabled: true
+        })
+
         try {
-            let res = await fetch('/logout', {
+            let res = await fetch('http://localhost:4443/v1/login2', {
                 method: 'post',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
-                }
+                },
+                body: JSON.stringify({
+                    username: this.state.username,
+                    password: this.state.password,
+                    isManager: LoginStore.isManager
+                })
             });
-
-            let result  = await res.json();
+            
+            let result = await res.json();
             if(result && result.success){
-                UserStore.isLoggedIn = false;
-                UserStore.username = '';
+                UserStore.isLoggedIn = true;
+                this.forceUpdate();
+            }else if(result && result.success === false){
+                this.resetForm();
             }
-        }
-        catch(e) {
+        } catch(e){
             console.log(e);
+            this.resetForm();
         }
+    }
+
+    doRegister(){
+        this.props.history.push('/register');
     }
 
     render() {
-        if(UserStore.loading){
+        console.log("isManager: " + LoginStore.isManager);
+        if(!UserStore.isLoggedIn){
             return (
-                <div className='app'>
-                    <div className='container'>
-                        Loading, please wait ..
+                <div className='loginForm'>
+                    <div class='loginTitle'>SEPP Login</div>
+                    <InputField
+                        type='text'
+                        placeholder='Username'
+                        value={this.state.username ? this.state.username : ''}
+                        onChange={ (val) => this.setInputValue('username', val)}
+                    />
+                    <InputField
+                        type='password'
+                        placeholder='Password'
+                        value={this.state.password ? this.state.password : ''}
+                        onChange={ (val) => this.setInputValue('password', val)}
+                    />
+    
+                    <SubmitButton
+                        text={'Login'}
+                        disabled={this.state.buttonDisabled}
+                        onClick={()=>this.doLogin()}
+                    />
+
+                    <SubmitButton
+                        text={'Register'}
+                        disabled={this.state.buttonDisabled}
+                        onClick={()=>this.doRegister()}
+                    />
+                </div>
+            );
+        }else{
+            if(LoginStore.isManager){
+                return (
+                    <div className='loginForm'>
+                        <div class='loginTitle'>Your UserID: {AccountStore.getUserId()}</div>
+                        <br/>
+                        <br/>
+                        <Link to="/search2/" style={{color:'black'}}>
+                            <button type="button" className='btnMe'>Go to Search</button>
+                        </Link>
+                        <br/>
+                        <br/>
+                        <Link to="/loguiData/" style={{color:'black'}}>
+                            <button type="button" className='btnMe'>Go to LogUI</button>
+                        </Link>
+                        <br/>
+                        <br/>
                     </div>
-                </div>
-            );
-        } else {            
-            return (
-                <div className='app'>
-                    <Router history={history}>
-                        <Route exact path="/" component={LoginForm}/>
-                        <Route exact path="/search2" component={Search2}/>
-                        <Route path="/loguiData" component={LoguiData}/>
-                    </Router>
-                </div>
-            );
+                );
+            } else {
+                return (
+                    <div className='loginForm'>
+                        <div class='loginTitle'>Your UserID: {AccountStore.getUserId()}</div>
+                        <br/>
+                        <br/>
+                        <Link to="/search2/" style={{color:'black'}}>
+                            <button type="button" className='btnMe'>Go to Search</button>
+                        </Link>
+                        <br/>
+                        <br/>
+                    </div>
+                );
+            }
         }
+        
     }
 }
 
-export default observer(App)
+export default LoginForm;

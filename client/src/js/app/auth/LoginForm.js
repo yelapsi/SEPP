@@ -5,6 +5,7 @@ import UserStore from '../../stores/UserStore';
 import AccountStore from "../../stores/AccountStore";
 import LoginStore from "../../stores/LoginStore";
 import { Link } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 
 class LoginForm extends React.Component {
     constructor(props){
@@ -74,6 +75,10 @@ class LoginForm extends React.Component {
         }
     }
 
+    doRegister(){
+        this.props.history.push('/register');
+    }
+
     render() {
         console.log("isManager: " + LoginStore.isManager);
         if(!UserStore.isLoggedIn){
@@ -97,6 +102,12 @@ class LoginForm extends React.Component {
                         text={'Login'}
                         disabled={this.state.buttonDisabled}
                         onClick={()=>this.doLogin()}
+                    />
+
+                    <SubmitButton
+                        text={'Register'}
+                        disabled={this.state.buttonDisabled}
+                        onClick={()=>this.doRegister()}
                     />
                 </div>
             );

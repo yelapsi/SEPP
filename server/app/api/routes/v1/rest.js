@@ -22,6 +22,9 @@ module.exports = function(router) {
     router.get('/login/:userId', LoginCtrl.login);
     router.post('/login2', LoginCtrl.login2);
 
+    // Register
+    router.post('/register', LoginCtrl.register);
+
     // Search
     router.get('/search/:vertical', SearchCtrl.search);
     router.get('/search/:vertical/getById/:id', SearchCtrl.getById);

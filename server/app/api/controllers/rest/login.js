@@ -20,9 +20,6 @@ const login2 = (req, res) => {
 
     username = username.toLowerCase();
 
-    console.log(username);
-
-    let cols = [username];
     let sql = 'SELECT * FROM public.\"user\" WHERE username = \'' + username + '\' LIMIT 1';
     console.log(sql);
     pool.query(sql, (err, data) => {
@@ -69,7 +66,69 @@ const login2 = (req, res) => {
     });
 };
 
+const register = (req, res) => {
+    let username = req.body.username;
+    let password = req.body.password;
+    let passwordConfirm = req.body.passwordConfirm;
+
+    if(password != passwordConfirm){
+        // console.log("asdfasdfasdfasdfasdf");
+        res.json({
+            success: false,
+            message: 'The two passwords are different.'
+        });
+        return;
+    } else {
+        username = username.toLowerCase();
+    
+        let sql = 'SELECT * FROM public.\"user\" WHERE username = \'' + username + '\' LIMIT 1';
+        // console.log(sql);
+    
+        pool.query(sql, (err, data) => {
+            // console.log(err);
+            if (err) {
+                res.json({
+                    success: false,
+                    message: 'An error occured, please try again'
+                });
+                return;
+            }
+            // let pswrd = bcrypt.hashSync('123', 9);
+    
+            if(data && data.rows.length === 1){
+                // return msg: username already exists
+                res.json({
+                    success: false,
+                    message: "Username already exists."
+                });
+            }else{
+                let pswrd = bcrypt.hashSync(password, 9);
+                let sqlInsert = 'INSERT INTO public.\"user\"(username, password, "isManager") VALUES (\'' + username + '\', \'' + pswrd + '\', true)';
+                // console.log(sqlInsert);
+    
+                // insert username and pwd to db
+                pool.query(sqlInsert, (err, data) => {
+                    console.log(err);
+                    if (err) {
+                        res.json({
+                            success: false,
+                            message: 'An error occured, please try again'
+                        });
+                        return;
+                    }else{
+                        res.json({
+                            success: true,
+                        });
+                        return;
+                    }
+                });
+            }
+        });
+    }
+};
+
 module.exports = {
     login,
-    login2
+    login2,
+    register
 };

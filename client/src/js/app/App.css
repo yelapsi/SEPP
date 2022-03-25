@@ -248,3 +248,9 @@ body, html, #root, .app, .container {
   font-weight: unset;
   padding-right: 40px;
 }
+
+.msg{
+  color: rgb(255, 255, 255);
+  width: 100%;
+  text-align: center;
+}
